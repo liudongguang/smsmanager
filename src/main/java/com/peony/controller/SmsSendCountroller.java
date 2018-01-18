@@ -31,15 +31,15 @@ public class SmsSendCountroller {
 
     private ResultMsg issend(String phone, ResultMsg rt ) {
         int dayCount = smsSendManagerService.getDayCountByPhone(phone);
-        if (dayCount > 5) {
+        if (dayCount >= 2) {
             rt.setErrorCode(1);
-            rt.setErrorMsg("一天只能发送5条");
+            rt.setErrorMsg("一天只能发送2条");
             return rt;
         } else {
             int count = smsSendManagerService.getCountByPhoneAndTime(phone);
-            if (count > 3) {
+            if (count >= 2) {
                 rt.setErrorCode(1);
-                rt.setErrorMsg("一小时内发送3条");
+                rt.setErrorMsg("一小时内发送2条");
                 return rt;
             }
         }
